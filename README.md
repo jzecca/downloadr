@@ -19,7 +19,7 @@ npm install downloadr
 
 #### Initialization
 ```javascript
-const Downloadr = require('Downloadr');
+const Downloadr = require('downloadr');
 
 const downloadr = new Downloadr();
 ```
@@ -31,6 +31,18 @@ downloadr.add({
     hash: '4fb8652b2be29734df530fc0cfcaae922564b840',
     file: 'file.zip'
 });
+```
+
+You can also pass an array of downloads directly to the constructor:
+
+```javascript
+const downloadr = new Downloadr([
+    {
+        url:  'http://localhost/file.zip',
+        hash: '4fb8652b2be29734df530fc0cfcaae922564b840',
+        file: 'file.zip'
+    }
+]);
 ```
 
 #### Event listeners
