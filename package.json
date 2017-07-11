@@ -2,6 +2,11 @@
   "name": "downloadr",
   "version": "1.0.0",
   "description": "File download library",
+  "homepage": "https://github.com/zed-k/downloadr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zed-k/downloadr.git"
+  },
   "main": "./lib/index.js",
   "scripts": {
     "test": "mocha ./test"
