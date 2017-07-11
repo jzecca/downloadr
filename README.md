@@ -28,7 +28,7 @@ const downloadr = new Downloadr();
 ```javascript
 downloadr.add({
     url:  'http://localhost/file.zip',
-    hash: '4fb8652b2be29734df530fc0cfcaae922564b840',
+    hash: '4fb8652b2be29734df530fc0cfcaae922564b840', // optional SHA1 - omit to skip file integrity check
     file: 'file.zip'
 });
 ```
@@ -48,15 +48,14 @@ const downloadr = new Downloadr([
 #### Event listeners
 ```javascript
 // Progress
-downloadr.on('progress', (current, total) => {
-    console.dir(current);
-    console.dir(total);
+downloadr.on('progress', progress => {
+    console.dir(progress);
 });
 
 // Job end
 downloadr.on('jobEnd', err => {
     if (err) {
-        return console.log(`An error occured: ${err.message}`);
+        return console.log(`An error occurred: ${err.message}`);
     }
 
     console.log('Download complete');
@@ -65,7 +64,7 @@ downloadr.on('jobEnd', err => {
 // End
 downloadr.on('end', err => {
     if (err) {
-        return console.log(`An error occured: ${err.message}`);
+        return console.log(`An error occurred: ${err.message}`);
     }
 
     console.log('Download queue complete');
