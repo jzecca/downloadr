@@ -1,4 +1,4 @@
-### v1.1.0 (2017-07-XX)
+### v1.1.0 (2017-07-11)
 
 * Constructor now accepts an array of downloads to add to the queue.
 * Adds an optional `data` parameter to store whatever we might need later on.
