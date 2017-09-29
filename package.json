@@ -1,6 +1,6 @@
 {
   "name": "downloadr",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "File download library",
   "homepage": "https://github.com/zed-k/downloadr",
   "repository": {
@@ -24,9 +24,9 @@
     "progress-stream": "^2.0.0"
   },
   "devDependencies": {
-    "chai": "^4.0.2",
-    "mocha": "^3.4.2",
-    "sinon": "^2.3.6",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.3",
+    "sinon": "^2.4.1",
     "throttle": "^1.0.3"
   }
 }

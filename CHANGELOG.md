@@ -1,4 +1,4 @@
-### v1.2.0 (2017-XX-XX)
+### v1.2.0 (2017-09-29)
 
 * Add `speed` property to progress event
 * Fix progress event `current` property being named `job`
