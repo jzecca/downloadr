@@ -1,5 +1,7 @@
 ### v1.2.0 (2017-XX-XX)
 
+* Add `speed` property to progress event
+* Fix progress event `current` property being named `job`
 * Fix exception thrown when aborting an idle queue
 * Fix queue not being cleared on download end
 * Remove optional `data` parameter
