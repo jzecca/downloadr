@@ -1,6 +1,7 @@
 ### v1.1.1 (2017-XX-XX)
 
 * Fix exception thrown when aborting an idle queue
+* Fix queue not being cleared on download end
 
 ### v1.1.0 (2017-07-11)
 
