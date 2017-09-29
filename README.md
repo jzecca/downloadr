@@ -29,8 +29,7 @@ const downloadr = new Downloadr();
 downloadr.add({
     url:  'http://localhost/file.zip',
     hash: '4fb8652b2be29734df530fc0cfcaae922564b840', // optional SHA-1 - omit to skip file integrity check
-    file: 'file.zip',
-    data: { ... } // optional custom data object - put whatever you might need in here
+    file: 'file.zip'
 });
 ```
 
@@ -55,7 +54,6 @@ downloadr.on('progress', (job, progress) => {
             url:  'http://localhost/file.zip',
             hash: '4fb8652b2be29734df530fc0cfcaae922564b840',
             file: 'file.zip'
-            data: null
         }
 
         progress => {
