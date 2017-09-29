@@ -58,7 +58,8 @@ downloadr.on('progress', (job, progress) => {
 
         progress => {
             current: 0.1254,
-            total: 0.896
+            total: 0.896,
+            speed: 949624
         }
     */
 });
