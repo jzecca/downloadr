@@ -1,3 +1,7 @@
+### v1.1.1 (2017-XX-XX)
+
+* Fix exception thrown when aborting an idle queue
+
 ### v1.1.0 (2017-07-11)
 
 * Constructor now accepts an array of downloads to add to the queue.
