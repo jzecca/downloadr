@@ -12,9 +12,10 @@ class DownloadTestCase
     /**
      * Constructor.
      *
-     * @param {string} url
+     * @param {string}        url
+     * @param {Function|null} postProcess
      */
-    constructor({url}) {
+    constructor({url, postProcess = null}) {
         this._server = new TestServer({
             assetSize: 6 * 1024,
             maxSpeed:  4 * 1024,
@@ -33,9 +34,10 @@ class DownloadTestCase
         };
 
         this._download = new Download({
-            url:  url,
-            file: this._file.path,
-            hash: this._server.asset.hash,
+            url:         url,
+            file:        this._file.path,
+            hash:        this._server.asset.hash,
+            postProcess: postProcess,
         });
     }
 

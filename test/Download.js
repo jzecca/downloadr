@@ -63,7 +63,73 @@ describe('Download', () => {
             assert.isTrue(test.endSpy.calledOnce);
             assert.isTrue(test.endSpy.calledWith(sinon.match.instanceOf(Error)));
         });
-        it('should not write file to disk',      () => assert.isFalse(test.file.exists));
+        it('should not write file to disk', () => assert.isFalse(test.file.exists));
+    });
+
+
+    describe('Executing a postProcess function', () => {
+        let postProcessResult = null;
+
+        const test = new DownloadTestCase({
+            url: 'http://127.0.0.1:3030/',
+            postProcess: job => {
+                postProcessResult = job;
+            }
+        });
+
+        before(function(done) { test.buildUp(this, 2000, done) });
+        after(() => test.tearDown());
+
+        it('should execute function', () => assert.isNotNull(postProcessResult));
+        it('should pass job as an argument', () => assert.deepEqual(postProcessResult, {
+            url:  'http://127.0.0.1:3030/',
+            file: test.file.path,
+            hash: test.file.hash,
+        }));
+    });
+
+
+    describe('Executing a postProcess function returning a fulfilled Promise', () => {
+        let postProcessResult = null;
+
+        const test = new DownloadTestCase({
+            url: 'http://127.0.0.1:3030/',
+            postProcess: job => new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    postProcessResult = job;
+                    resolve();
+                }, 1000);
+            })
+        });
+
+        before(function(done) { test.buildUp(this, 4000, done) });
+        after(() => test.tearDown());
+
+        it('should wait for function to resolve', () => assert.isNotNull(postProcessResult));
+        it('should pass job as an argument', () => assert.deepEqual(postProcessResult, {
+            url:  'http://127.0.0.1:3030/',
+            file: test.file.path,
+            hash: test.file.hash,
+        }));
+    });
+
+
+    describe('Executing a postProcess async returning a rejected Promise', () => {
+        const rejectionMessage = 'Rejected!';
+
+        const test = new DownloadTestCase({
+            url: 'http://127.0.0.1:3030/',
+            postProcess: job => new Promise((resolve, reject) => {
+                reject(rejectionMessage);
+            })
+        });
+
+        before(function(done) { test.buildUp(this, 4000, done) });
+        after(() => test.tearDown());
+
+        it('should emit a end event with an error', () => {
+            assert.isTrue(test.endSpy.calledWith(sinon.match.instanceOf(Error)));
+        });
     });
 
 });
