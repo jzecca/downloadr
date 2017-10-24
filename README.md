@@ -34,7 +34,6 @@ downloadr.add({
 ```
 
 You can also pass an array of downloads directly to the constructor:
-
 ```javascript
 const downloadr = new Downloadr([
     {
@@ -82,6 +81,32 @@ downloadr.on('end', err => {
     console.log('Download queue complete');
 });
 ```
+
+
+#### Post processing
+Use `postProcess` argument to pass a function that will be executed after a successful download, but before `jobEnd` event is triggered:
+```javascript
+downloadr.add({
+    url:         'http://localhost/file.zip',
+    file:        'file.zip',
+    postProcess: job => {
+        console.dir(job);
+    }
+});
+```
+
+If `postProcess` returns a promise, `jobEnd` will only be triggered once it's fulfilled (and pass an error if it's rejected).
+```javascript
+downloadr.add({
+    url:         'http://localhost/file.zip',
+    file:        'file.zip',
+    postProcess: job => new Promise((resolve, reject) => {
+        console.log(`File ${job.file} downloaded, waiting 2 seconds...`);
+        setTimeout(resolve, 2000);
+    })
+});
+```
+
 
 #### Start/abort download queue
 ```javascript
