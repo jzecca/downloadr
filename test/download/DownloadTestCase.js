@@ -1,10 +1,10 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const sha = require('sha');
 const sinon = require('sinon');
 
 const Download = require('../../lib/Download');
-const { fileHash, fileSize } = require('../../lib/utils');
 const TestServer = require('../server/TestServer');
 
 class DownloadTestCase
@@ -88,8 +88,8 @@ class DownloadTestCase
         }
 
         this._file.exists = true;
-        this._file.size   = fileSize(this._file.path);
-        this._file.hash   = fileHash(this._file.path);
+        this._file.size   = fs.statSync(this._file.path).size;
+        this._file.hash   = sha.getSync(this._file.path);
     }
 
     /**
